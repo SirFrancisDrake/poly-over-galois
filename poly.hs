@@ -1,12 +1,10 @@
 {-# LANGUAGE TypeSynonymInstances, FlexibleInstances, ViewPatterns #-}
 
-import Control.DeepSeq
 import Control.Exception hiding (try)
 import Control.Monad (mapM_, foldM_)
 import Data.List (intersperse)
 import Data.Maybe (fromJust, isJust)
 import Math.Polynomial
-import System.Console.Readline
 import Text.ParserCombinators.Parsec
 
 import Galois
@@ -25,8 +23,8 @@ expr e =
 
 pcycle :: IO ()
 pcycle = do
-    sequence_ [putStr "zzz> "]
-    a <- readline "" >>= return . fromJust
+    -- a <- evaluate (putStr "zzz> ") >> readline >>= return . fromJust
+    a <- getLine
     case a of
         "q" -> return ()
         "h" -> putStrLn msg_help >> pcycle
